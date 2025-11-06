@@ -24,7 +24,7 @@ tipolista Lista;
 tipoitem x;
 apontador pos;
 
-void FLVazia (tipolista *Lista)
+void FLVazia (tipolista * Lista)
 {
     Lista->Primeiro = InicioArranjo;
     Lista->Ultimo = InicioArranjo;
@@ -61,7 +61,7 @@ int main (){
 
     int opcao ,resposta;
     setlocale(LC_ALL, "");
-    // FLVazia(&lista);
+    FLVazia(&Lista);
     do 
     {
         printf("\nMenu\n");
@@ -78,11 +78,11 @@ int main (){
                 printf("Encerrando o programa...\n");
                 break;
             case 1:
-                // FLVazia(&lista);
+                FLVazia(&Lista);
                 printf("Lista esvaziada com sucesso!\n");
                 break;
             case 2:
-                // resposta = Vazia(lista);
+                resposta = Vazia(Lista);
                 if (resposta == 1)
                 {
                     printf("A lista esta vazia!\n");
