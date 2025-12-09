@@ -1,0 +1,8 @@
+vantagens:
+Economia de memória, pois os apontadores são implícitos nesta estrutura.
+A lista pode ser percorrida em qualquer direção.
+A inserção de um novo item pode ser realizado após o último item com custo constante.
+
+Desvantagens:
+O custo para inserir ou retirar itens da lista, que pode causar um deslocamento de todos os itens, no pior caso;
+Em aplicações em que não existe previsão sobre o crescimento da lista, a utilização de arranjos em linguagens como o C pode ser problemática porque neste caso o tamanho máximo da lista tem de ser definido em tempo de compilação.
