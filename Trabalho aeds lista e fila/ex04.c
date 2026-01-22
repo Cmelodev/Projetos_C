@@ -36,7 +36,7 @@ void RemoverNota(ListaAlunos *ListaATT, int indice){
         printf("Indice invalido!\n");
     } else {
         for (int i = ListaATT->primeiro - 1; i < ListaATT->ultimo - 1; i++){
-            if (i == indice - 1){
+            if (i == indice){
                 for (int j = i; j < ListaATT->ultimo - 1; j++){
                     ListaATT->dados[j] = ListaATT->dados[j + 1];
                 }
