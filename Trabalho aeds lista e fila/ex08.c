@@ -2,41 +2,68 @@
 
 #define MAX 20
 
-int fila[MAX];
-int inicio = 0, fim = 0, total = 0;
-int senhaAtual = 1;
+typedef struct {
+    int dados[MAX];
+    int *inicio;
+    int *fim;
+    int total;
+    int senhaAtual;
+} Fila;
 
-void adicionarCliente() {
-    if (total == MAX) {
+void inicializarFila(Fila *f) {
+    f->inicio = f->dados;
+    f->fim = f->dados;
+    f->total = 0;
+    f->senhaAtual = 1;
+}
+
+void adicionarCliente(Fila *f) {
+    if (f->total == MAX) {
         printf("Fila cheia!\n");
         return;
     }
-    fila[fim] = senhaAtual++;
-    fim = (fim + 1) % MAX;
-    total++;
-    printf("Cliente adicionado. Senha: %d\n", fila[(fim - 1 + MAX) % MAX]);
+
+    *(f->fim) = f->senhaAtual++;
+    printf("Cliente adicionado. Senha: %d\n", *(f->fim));
+
+    f->fim++;
+    if (f->fim == f->dados + MAX) {
+        f->fim = f->dados;
+    }
+
+    f->total++;
 }
 
-void atenderCliente() {
-    if (total == 0) {
+void atenderCliente(Fila *f) {
+    if (f->total == 0) {
         printf("Fila vazia!\n");
         return;
     }
-    printf("Atendendo cliente senha: %d\n", fila[inicio]);
-    inicio = (inicio + 1) % MAX;
-    total--;
+
+    printf("Atendendo cliente senha: %d\n", *(f->inicio));
+
+    f->inicio++;
+    if (f->inicio == f->dados + MAX) {
+        f->inicio = f->dados;
+    }
+
+    f->total--;
 }
 
-void proximoCliente() {
-    if (total == 0) {
+void proximoCliente(Fila *f) {
+    if (f->total == 0) {
         printf("Fila vazia!\n");
         return;
     }
-    printf("Proximo cliente: %d\n", fila[inicio]);
+
+    printf("Proximo cliente: %d\n", *(f->inicio));
 }
 
 int main() {
+    Fila fila;
     int opcao;
+
+    inicializarFila(&fila);
 
     do {
         printf("\n1 - Adicionar cliente");
@@ -46,12 +73,11 @@ int main() {
         scanf("%d", &opcao);
 
         switch (opcao) {
-            case 1: adicionarCliente(); break;
-            case 2: atenderCliente(); break;
-            case 3: proximoCliente(); break;
-            default:
-                printf("Opcao invalida!\n");
-                break;
+            case 1: adicionarCliente(&fila); break;
+            case 2: atenderCliente(&fila); break;
+            case 3: proximoCliente(&fila); break;
+            case 0: break;
+            default: printf("Opcao invalida!\n");
         }
     } while (opcao != 0);
 
