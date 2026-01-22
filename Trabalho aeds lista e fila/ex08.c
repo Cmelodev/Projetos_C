@@ -4,15 +4,11 @@
 
 typedef struct {
     int dados[MAX];
-    int *inicio;
-    int *fim;
     int total;
     int senhaAtual;
 } Fila;
 
 void inicializarFila(Fila *f) {
-    f->inicio = f->dados;
-    f->fim = f->dados;
     f->total = 0;
     f->senhaAtual = 1;
 }
@@ -23,14 +19,8 @@ void adicionarCliente(Fila *f) {
         return;
     }
 
-    *(f->fim) = f->senhaAtual++;
-    printf("Cliente adicionado. Senha: %d\n", *(f->fim));
-
-    f->fim++;
-    if (f->fim == f->dados + MAX) {
-        f->fim = f->dados;
-    }
-
+    f->dados[f->total] = f->senhaAtual++;
+    printf("Cliente adicionado. Senha: %d\n", f->dados[f->total]);
     f->total++;
 }
 
@@ -40,11 +30,10 @@ void atenderCliente(Fila *f) {
         return;
     }
 
-    printf("Atendendo cliente senha: %d\n", *(f->inicio));
+    printf("Atendendo cliente senha: %d\n", f->dados[0]);
 
-    f->inicio++;
-    if (f->inicio == f->dados + MAX) {
-        f->inicio = f->dados;
+    for (int i = 0; i < f->total - 1; i++) {
+        f->dados[i] = f->dados[i + 1];
     }
 
     f->total--;
@@ -56,7 +45,7 @@ void proximoCliente(Fila *f) {
         return;
     }
 
-    printf("Proximo cliente: %d\n", *(f->inicio));
+    printf("Proximo cliente: %d\n", f->dados[0]);
 }
 
 int main() {
