@@ -49,6 +49,9 @@ int main() {
             case 1: adicionarCliente(); break;
             case 2: atenderCliente(); break;
             case 3: proximoCliente(); break;
+            default:
+                printf("Opcao invalida!\n");
+                break;
         }
     } while (opcao != 0);
 
