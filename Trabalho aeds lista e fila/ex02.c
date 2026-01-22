@@ -51,10 +51,10 @@ int main() {
         return 0;
     }
 
-    /* a) quantidade */
+    // a) quantidade 
     printf("\nQuantidade de valores lidos: %d\n", qtd);
 
-    /* b) ordem informada */
+    // b) ordem informada 
     printf("Valores na ordem informada: ");
     for (int i = pNotas->primeiro; i < pNotas->ultimo; i++) {
         printf("%d ", pNotas->valores[i]);
@@ -62,34 +62,34 @@ int main() {
     }
     printf("\n");
 
-    /* c) ordem inversa */
+    // c) ordem inversa 
     printf("Valores na ordem inversa:\n");
     for (int i = pNotas->ultimo - 1; i >= pNotas->primeiro; i--) {
         printf("%d\n", pNotas->valores[i]);
     }
 
-    /* d) soma */
+    // d) soma 
     printf("Soma dos valores: %d\n", soma);
 
-    /* e) media */
+    // e) media 
     media = (float)soma / qtd;
     printf("media dos valores: %.2f\n", media);
 
-    /* f) acima da media */
+    // f) acima da media 
     for (int i = pNotas->primeiro; i < pNotas->ultimo; i++) {
         if (pNotas->valores[i] > media)
             acimaMedia++;
     }
     printf("Quantidade acima da media: %d\n", acimaMedia);
 
-    /* g) abaixo de 7 */
+    // g) abaixo de 7 
     for (int i = pNotas->primeiro; i < pNotas->ultimo; i++) {
         if (pNotas->valores[i] < 7)
             abaixoSete++;
     }
     printf("Quantidade abaixo de 7: %d\n", abaixoSete);
 
-    /* h) mensagem de encerramento */
+    // h) mensagem de encerramento 
     printf("Programa encerrado com sucesso!\n");
     return 0;
 }
